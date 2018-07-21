@@ -1,0 +1,25 @@
+.all-home{
+    margin-left: 25px;
+}
+
+.hepsi-home{
+    margin-right: 25px;
+    background-color:  #F2F2F2;
+    color: black;
+    min-height: 37px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom-color:  #00A1FC;
+    border-bottom-style: solid;
+    margin-bottom: 1px;
+}
+.searchdiv{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.baslik-home{
+    margin-left: 25px;
+    margin-right: 25px;
+}

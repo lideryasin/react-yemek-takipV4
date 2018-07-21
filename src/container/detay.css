@@ -1,0 +1,20 @@
+.basliklar{
+    font-weight: bold;
+}
+
+table{
+    text-align: left
+}
+.btn-detay{
+    float: right;
+}
+.tr-detay{
+    min-height: 50px;
+}
+.material-icons.red65 {
+    color: red;
+    text-align: center;
+}
+.dzn{
+    padding-left: 4px;
+}

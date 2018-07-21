@@ -1,0 +1,57 @@
+.text{
+    width: 200px;
+    margin-bottom: 5px;
+    }
+    .sol{
+      float: right;
+    }
+    
+    .ana_div {
+      min-height: 350px;
+      width: 300px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    
+    .divler{
+        margin-left: 50px;
+    }
+    
+    .baslık{
+      border-style: solid;
+      border-top: 1px;
+      border-color: #00A1FC;
+      font-weight: bold;
+      text-align: center;
+    }
+    .yazi{
+      margin-top: 3px;
+      font-weight: bold;
+      color: black
+    }
+    
+    .btn3{
+        margin-top: 15px;
+      width: 200px;
+      margin-bottom: 10px;
+      background-color: #00A1FC;
+      color: white
+    }
+    .btn2{
+      width: 200px;
+      background-color: red;
+      color: white
+    }
+    
+
+    .faba{
+      position: fixed; bottom:20px; right: 20px;
+    
+    }
+    .btnler{
+      width: 160px;
+    }
+    .evet{
+      background-color: red;
+      color: white;
+    }
