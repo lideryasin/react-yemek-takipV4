@@ -9,6 +9,7 @@ import Navbar from './components/navbar';
 import firebase from 'firebase';
 import './App.css';
 
+
 import createHistory from "history/createBrowserHistory"
 
 const history = createHistory()
@@ -39,7 +40,7 @@ class App extends Component {
   render() {
     return (
       <AlertProvider template={AlertTemplate} {...options}>
-        <BrowserRouter>
+        <HashRouter >
           <div>
             <Navbar />
             <div>
@@ -47,7 +48,7 @@ class App extends Component {
               <Route path="/detay/:id" component={Detay} />
             </div>
           </div>
-        </BrowserRouter>
+        </HashRouter>
       </AlertProvider>
     );
   }

@@ -6,6 +6,7 @@ import moment from 'moment';
 import Modal from 'react-modal';
 import 'react-datepicker/dist/react-datepicker.css';
 import { withAlert } from 'react-alert';
+import { Link } from 'react-router-dom';
 import './detay.css';
 
 
@@ -91,34 +92,43 @@ class Detay extends Component {
     })
   }
 
+  geri = () => {
+
+  }
 
 
   render() {
     const item = this.props.history.location.state.isTakipler
+    //   console.log(moment(item.tarih, '"DD-MM-YYYY"')._i)
+
+    const tarihg = this.state.tarih
+    const cevir = new Intl.DateTimeFormat('tr-TR', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(tarihg);
 
     return (
       <div>
         <table className="table table-striped">
-          <tr className="tr-detay">
-            <td></td>
-            <td className="btn-detay"> <button onClick={this.openModal} type="button" className="btn btn-outline-info">Düzenle<i className="material-icons dzn">
-              edit
-            </i></button> <button type="button" onClick={() => this.delete(item.key)} className="btn btn-outline-danger">Sil<i className="material-icons md-48 red65">
-                delete_forever
-            </i></button> </td>
-          </tr>
           <tbody>
+            <tr className="tr-detay">
+              <td><div className="gr"><Link to="/"><button onClick={this.geri} class="btn btn-outline-secondary"><i class="material-icons gr">
+                keyboard_backspaces
+              </i>Geri</button></Link></div> </td>
+              <td className="btn-detay"> <button onClick={this.openModal} type="button" className="btn btn-outline-info">Düzenle<i className="material-icons dzn">
+                edit
+            </i></button> <button type="button" onClick={() => this.delete(item.key)} className="btn btn-outline-danger">Sil<i className="material-icons md-48 red65">
+                  delete_forever
+            </i></button> </td>
+            </tr>
             <tr>
               <td className="basliklar">Lokasyon</td>
-              <td>{item.lokasyon}</td>
+              <td>{this.state.lokasyon}</td>
             </tr>
             <tr>
               <td className="basliklar">Tarih</td>
-              <td>{item.tarih}</td>
+              <td>{cevir}</td>
             </tr>
             <tr>
               <td className="basliklar">Adet</td>
-              <td>{item.adet}</td>
+              <td>{this.state.adet}</td>
             </tr>
           </tbody>
         </table>

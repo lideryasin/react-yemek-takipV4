@@ -83,7 +83,7 @@ class Home extends Component {
         <div>
           <List />
           <div>
-            <div className="faba"><Button variant="fab" color="primary" aria-label="add" onClick={this.openModal} >
+            <div className="faba"><Button className="home-btn" variant="fab" color="secondary" aria-label="add" onClick={this.openModal} >
               <AddIcon />
             </Button></div>
             <Modal

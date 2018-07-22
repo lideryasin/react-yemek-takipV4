@@ -4,6 +4,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import Baslik from '../components/baslik';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import './list.css';
 
 function searchingFor(term) {
@@ -69,7 +70,9 @@ class List extends Component {
   }
 
   detaySayfasi = (isTakipler) => {
-    this.props.history.push(`/detay/${isTakipler.key}`, { isTakipler });
+    // this.props.history.push(`/detay/${isTakipler.key}`, { isTakipler });
+
+
   }
 
   render() {
@@ -85,27 +88,33 @@ class List extends Component {
 
         {
           isTakip.filter(searchingFor(term)).map((isTakipler) =>
-            //   <Link to={`/detay/${isTakipler.key}`} key={isTakipler.key} >
-            <div key={isTakipler.key} onClick={() => this.detaySayfasi(isTakipler)}>
-              <div className="all-home">
-                <div className="hepsi-home">
-                  <div className="" >
-                    <div className="row">
-                      <div className="col-sm">
-                        {isTakipler.lokasyon}
-                      </div>
-                      <div className="col-sm">
-                        {isTakipler.tarih}
-                      </div>
-                      <div className="col-sm">
-                        {isTakipler.adet}
+            // <Link to={`/detay/${isTakipler.key}`} key={isTakipler.key}   >
+
+            <Link to={{
+              pathname: '/detay/' + isTakipler.key,
+              state: { isTakipler }
+            }} key={isTakipler.key}>
+
+              <div key={isTakipler.key}  >
+                <div className="all-home">
+                  <div className="hepsi-home">
+                    <div className="" >
+                      <div className="row">
+                        <div className="col-sm">
+                          {isTakipler.lokasyon}
+                        </div>
+                        <div className="col-sm">
+                          {isTakipler.tarih}
+                        </div>
+                        <div className="col-sm">
+                          {isTakipler.adet}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            //  </Link>
+            </Link>
           )
         }
       </div>
