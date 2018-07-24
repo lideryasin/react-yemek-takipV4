@@ -107,7 +107,7 @@ class List extends Component {
                           {isTakipler.tarih}
                         </div>
                         <div className="col-sm">
-                          {isTakipler.adet}
+                          {isTakipler.toplam}
                         </div>
                       </div>
                     </div>

@@ -15,7 +15,7 @@ class Baslik extends Component {
                             Tarih
                           </div>
                         <div className="col-sm">
-                            Tepsi Adet
+                            Toplam
                          </div>
                     </div>
                 </div>

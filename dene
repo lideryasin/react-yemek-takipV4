@@ -1,0 +1,69 @@
+
+   <Modal
+              isOpen={this.state.modalIsOpen}
+              onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.uyari}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+
+              <div className="baslık"> Yemek Takip Formu </div>
+
+              <div className="ana_div">
+                <div className="divler">
+
+                  <label className="yazi">Lokasyon</label>
+                  <select className="form-control text" value={this.state.lokasyon} onChange={this.lokasyonOnChange}>
+                    <option value="Beylükdüzü" >Beylükdüzü</option>
+                    <option value="Kıraç" >Kıraç</option>
+                  </select>
+
+                  <label className="yazi">Tarih</label>
+                  <DatePicker
+                    className="form-control text"
+                    selected={this.state.tarih}
+                    onChange={this.tarihOnChange}
+                    dateFormat="DD/MM/YYYY"
+                  />
+
+                  <label className="yazi">Adet</label>
+                  <input type="text"
+                    onChange={this.adetOnChange}
+                    className="form-control text"
+                  />
+
+                  <button
+                    className="btn btn3"
+                    onClick={() => {
+                      this.kaydet();
+                      this.closeModal();
+                    }}
+                  >
+                    Kaydet
+                  </button>
+                  <button
+                    className="btn btn2"
+                    onClick={() => {
+                      this.closeModal()
+                    }}
+                  >
+                    Vazgeç
+                  </button>
+
+                </div>
+              </div>
+            </Modal>
+
+
+
+
+
+
+
+                    <label className="yazi">Tarih</label>
+              <DatePicker
+                className="form-control text"
+                selected={this.state.tarih}
+                onChange={this.tarihOnChange}
+                dateFormat="DD/MM/YYYY"
+              />

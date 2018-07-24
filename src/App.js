@@ -27,12 +27,12 @@ class App extends Component {
     super();
 
     firebase.initializeApp({
-      apiKey: "AIzaSyBuuP4Od1XOJC8GSZ-0BnWXnP4Q3PygLpw",
-      authDomain: "yemektakip-e7e76.firebaseapp.com",
-      databaseURL: "https://yemektakip-e7e76.firebaseio.com",
-      projectId: "yemektakip-e7e76",
-      storageBucket: "yemektakip-e7e76.appspot.com",
-      messagingSenderId: "815316877527"
+      apiKey: "AIzaSyARPen73u2W8KXS-H7uZXDvYziPwzZB2nk",
+      authDomain: "istakip-f8bc3.firebaseapp.com",
+      databaseURL: "https://istakip-f8bc3.firebaseio.com",
+      projectId: "istakip-f8bc3",
+      storageBucket: "istakip-f8bc3.appspot.com",
+      messagingSenderId: "494518007166"
     })
 
   }
