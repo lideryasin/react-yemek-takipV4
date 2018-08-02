@@ -2,22 +2,22 @@
     font-weight: bold;
 }
 
-table{
-    text-align: left
+.detay-aciklama{
+    min-height: 20px;
+}
+.basliklar{
+    font-weight: bold;
+}
+.gr{
+    width: 20px;
 }
 .btn-detay{
     float: right;
 }
-.tr-detay{
-    min-height: 50px;
+.btnler-detay{
+    width: 80px;
+    margin-left: 10px;
 }
-.material-icons.red65 {
-    color: red;
-    text-align: center;
-}
-.dzn{
-    padding-left: 4px;
-}
-.gr{
-    width: 25px;
+.btnler-detay2{
+    width: 110px;
 }

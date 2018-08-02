@@ -35,7 +35,8 @@ class Detay extends Component {
       modalIsOpen: false,
       toplam: '',
       kahvaltiSaat: moment(),
-      kahvaltiAdet: '',
+    //  kahvaltiAdet: '',
+      yasin: '',
       oglenSaat: moment(),
       oglenAdet: '',
       ikindiSaat: moment(),
@@ -64,7 +65,9 @@ class Detay extends Component {
     this.setState({ geceSaat: moment(item.geceSaat, 'hh:mm') })
     this.setState({ geceAraSaat: moment(item.geceAraSaat, 'hh:mm') })
 
-    this.setState({ kahvaltiAdet: item.kahvaltiAdet })
+    this.setState({ yasin: item.yasin })
+
+    //this.setState({ kahvaltiAdet: item.kahvaltiAdet })
     this.setState({ oglenAdet: item.oglenAdet })
     this.setState({ ikindiAdet: item.ikindiAdet })
     this.setState({ aksamAdet: item.aksamAdet })
@@ -102,8 +105,11 @@ class Detay extends Component {
     this.setState({ geceAraSaat: data })
   }
 
-  kahvaltiAdetOnChange = (e) => {
+  /*kahvaltiAdetOnChange = (e) => {
     this.setState({ KahvaltiAdet : e.target.value })
+  }*/
+  yasinOnChange = (e)=> {
+    this.setState({ yasin: e.target.value })
   }
   oglenAdetOnChange = (e) => {
     this.setState({ oglenAdet: e.target.value })
@@ -120,8 +126,6 @@ class Detay extends Component {
   geceAraAdetOnChange = (e) => {
     this.setState({ geceAraAdet: e.target.value })
   }
-
- 
 
 
   openModal = () => {
@@ -150,6 +154,16 @@ class Detay extends Component {
   }
 
   edit = (key) => {
+
+    const s1 = this.state.yasin;
+    const s2 = this.state.oglenAdet;
+    const s3 = this.state.ikindiAdet;
+    const s4 = this.state.aksamAdet;
+    const s5 = this.state.geceAdet;
+    const s6 = this.state.geceAraAdet;
+
+    const top = parseInt(s1)+parseInt(s2)+parseInt(s3)+parseInt(s4)+parseInt(s5)+parseInt(s6);
+
     const dbRef = firebase.database().ref('yemekTakip').child(key);
     const gelecekTarih = this.state.tarih
     const gkahvaltiSaat = this.state.kahvaltiSaat
@@ -162,7 +176,7 @@ class Detay extends Component {
     dbRef.update({
       tarih: trim("" + new Intl.DateTimeFormat('tr-TR', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(gelecekTarih)),
       lokasyon: trim(this.state.lokasyon),
-      toplam: trim(this.state.toplam),
+      toplam: trim(""+top),
 
       kahvaltiSaat: trim("" + new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' }).format(gkahvaltiSaat)),
       oglenSaat: trim("" + new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' }).format(goglenSaat)),
@@ -171,7 +185,8 @@ class Detay extends Component {
       geceSaat: trim("" + new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' }).format(ggeceSaat)),
       geceAraSaat: trim("" + new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' }).format(ggeceAraSaat)),
 
-      kahvaltiAdet: trim(this.state.kahvaltiAdet),
+      yasin: trim(this.state.yasin),
+     // kahvaltiAdet: trim(this.state.kahvaltiAdet),
       oglenAdet: trim(this.state.oglenAdet),
       ikindiAdet: trim(this.state.ikindiAdet),
       aksamAdet: trim(this.state.aksamAdet),
@@ -207,16 +222,10 @@ class Detay extends Component {
       <div>
         <table className="table table-striped">
           <tbody>
-            <tr className="tr-detay">
-              <td><div className="gr"><Link to="/"><button onClick={this.geri} className="btn btn-outline-secondary"><i className="material-icons gr">
-                keyboard_backspaces
-              </i>Geri</button></Link></div> </td>
-              <td className="btn-detay"> <button onClick={this.openModal} type="button" className="btn btn-outline-info">Düzenle<i className="material-icons dzn">
-                edit
-            </i></button> <button type="button" onClick={() => this.delete(item.key)} className="btn btn-outline-danger">Sil<i className="material-icons md-48 red65">
-                  delete_forever
-            </i></button> </td>
-            </tr>
+          <tr>
+          <td> <Link to="/"><button className="btn btn-outline-secondary btnler-detay"><i className="material-icons gr">keyboard_backspaces</i>  Geri</button> </Link> </td>
+          <td className="btn-detay"><button onClick={this.openModal} className="btn btn-outline-info btnler-detay2">Düzenle <i className="material-icons">edit</i></button><button type="button" onClick={() => this.delete(item.key)} class="btn btn-outline-danger btnler-detay">Sil <i className="material-icons">delete_forever</i></button></td>
+          </tr>
             <tr>
               <td className="basliklar">Lokasyon</td>
               <td>{this.state.lokasyon}</td>
@@ -235,7 +244,7 @@ class Detay extends Component {
             </tr>
             <tr>
               <td className="basliklar">Kahvaltı Adeti</td>
-              <td>{this.state.kahvaltiAdet}</td>
+              <td>{this.state.yasin}</td>
             </tr>
             <tr>
               <td className="basliklar">Öğle Yemek Saati</td>
@@ -290,11 +299,6 @@ class Detay extends Component {
         <div className="baslık"> Yemek Takip Formu </div>
 
         <div className="loka-orta">
-        <label className="yazi">Lokasyon</label>
-        <select  className="form-control text" defaultValue={this.state.lokasyon} onChange={this.lokasyonOnChange} >
-        <option value="Beylükdüzü">Beylükdüzü</option>
-        <option value="Kıraç">Kıraç</option>
-        </select>
         </div>
 
         <div className="ana_div">
@@ -380,51 +384,50 @@ class Detay extends Component {
 
           <div className="div">
 
-            <label className="yazi">Toplam Adet</label>
-            <input type="text"
-            onChange={this.toplamOnChange}
-            className="form-control text "
-            defaultValue={this.state.toplam}
-          />
+          <label className="yazi">Lokasyon</label>
+          <select  className="form-control text" defaultValue={this.state.lokasyon} onChange={this.lokasyonOnChange} >
+          <option value="Beylükdüzü">Beylükdüzü</option>
+          <option value="Kıraç">Kıraç</option>
+          </select>
 
             <label className="yazi">Kahvaltı Adet</label>
-            <input type="text"
-            onChange={this.kahvaltiAdetOnChange}
+            <input type="number"
+            onChange={this.yasinOnChange}
             className="form-control text"
-            defaultValue={this.state.kahvaltiAdet}
+            defaultValue={this.state.yasin}
           />
 
 
             <label className="yazi">Öğle Yemek Adeti</label>
-            <input type="text"
+            <input type="number"
             onChange={this.oglenAdetOnChange}
             className="form-control text"
             defaultValue={this.state.oglenAdet}
           />
 
             <label className="yazi">İkindi Yemek Adeti</label>
-            <input type="text"
+            <input type="number"
               onChange={this.ikindiAdetOnChange}
               className="form-control text"
               defaultValue={this.state.ikindiAdet}
             />
 
             <label className="yazi">Akşam Yemek Adeti</label>
-            <input type="text"
+            <input type="number"
             onChange={this.aksamAdetOnChange}
             className="form-control text"
             defaultValue={this.state.aksamAdet}
           />
             
           <label className="yazi">Gece Yemek Adeti</label>
-          <input type="text"
+          <input type="number"
           onChange={this.geceAdetOnChange}
           className="form-control text"
           defaultValue={this.state.geceAdet}
         />
 
         <label className="yazi">Gece Ara Öğün Adeti</label>
-        <input type="text"
+        <input type="yazi"
         onChange={this.geceAraAdetOnChange}
         className="form-control text"
         defaultValue={this.state.geceAraAdet}

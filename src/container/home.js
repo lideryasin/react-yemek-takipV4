@@ -35,17 +35,18 @@ class Home extends Component {
       toplam:'',
       modalIsOpen: false,
       kahvaltiSaat: moment(),
-      kahvaltiAdet: '',
+      yasin: '0',
+     // kahvaltiAdet: '',
       oglenSaat: moment(),
-      oglenAdet: '',
+      oglenAdet: '0',
       ikindiSaat: moment(),
-      ikindiAdet:'',
+      ikindiAdet:'0',
       aksamSaat: moment(),
-      aksamAdet: '',
+      aksamAdet: '0',
       geceSaat: moment(),
-      geceAdet: '',
+      geceAdet: '0',
       geceAraSaat: moment(),
-      geceAraAdet: '',
+      geceAraAdet: '0',
     }
   }
 
@@ -77,8 +78,12 @@ class Home extends Component {
     this.setState({ geceAraSaat: data })
   }
 
-  kahvaltiAdetOnChange = (e) => {
+  /*kahvaltiAdetOnChange = (e) => {
     this.setState({ KahvaltiAdet : e.target.value })
+  }*/
+
+  yasinOnChange = (e)=> {
+    this.setState({ yasin: e.target.value })
   }
   oglenAdetOnChange = (e) => {
     this.setState({ oglenAdet: e.target.value })
@@ -117,6 +122,16 @@ class Home extends Component {
   }
 
   kaydet = () => {
+
+    const s1 = this.state.yasin;
+    const s2 = this.state.oglenAdet;
+    const s3 = this.state.ikindiAdet;
+    const s4 = this.state.aksamAdet;
+    const s5 = this.state.geceAdet;
+    const s6 = this.state.geceAraAdet;
+
+    const top = parseInt(s1)+parseInt(s2)+parseInt(s3)+parseInt(s4)+parseInt(s5)+parseInt(s6);
+
     const dbRef = firebase.database().ref('yemekTakip');
     const gelecekTarih = this.state.tarih
     const gkahvaltiSaat = this.state.kahvaltiSaat
@@ -130,7 +145,7 @@ class Home extends Component {
     dbRef.push({
       tarih: trim("" + new Intl.DateTimeFormat('tr-TR', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(gelecekTarih)),
       lokasyon: trim(this.state.lokasyon),
-      toplam: trim(this.state.toplam),
+      toplam: trim(""+top),
 
       kahvaltiSaat: trim("" + new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' }).format(gkahvaltiSaat)),
       oglenSaat: trim("" + new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' }).format(goglenSaat)),
@@ -139,7 +154,7 @@ class Home extends Component {
       geceSaat: trim("" + new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' }).format(ggeceSaat)),
       geceAraSaat: trim("" + new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' }).format(ggeceAraSaat)),
 
-      kahvaltiAdet: trim(this.state.kahvaltiAdet),
+      yasin: trim(this.state.yasin),
       oglenAdet: trim(this.state.oglenAdet),
       ikindiAdet: trim(this.state.ikindiAdet),
       aksamAdet: trim(this.state.aksamAdet),
@@ -147,6 +162,7 @@ class Home extends Component {
       geceAraAdet: trim(this.state.geceAraAdet),
     })
   }
+
 
   render() {
     console.log(this.state)
@@ -168,11 +184,7 @@ class Home extends Component {
             <div className="baslık"> Yemek Takip Formu </div>
             
             <div className="loka-orta">
-            <label className="yazi">Lokasyon</label>
-            <select  className="form-control text" value={this.state.lokasyon} onChange={this.lokasyonOnChange} >
-            <option value="Beylükdüzü">Beylükdüzü</option>
-            <option value="Kıraç">Kıraç</option>
-            </select>
+     
             </div>
             
             <div className="ana_div">
@@ -258,51 +270,58 @@ class Home extends Component {
 
               <div className="div">
 
-                <label className="yazi">Toplam Adet</label>
-                <input type="text"
-                onChange={this.toplamOnChange}
-                className="form-control text "
-              />
+              <label className="yazi">Lokasyon</label>
+              <select  className="form-control text" value={this.state.lokasyon} onChange={this.lokasyonOnChange} >
+              <option value="Beylükdüzü">Beylükdüzü</option>
+              <option value="Kıraç">Kıraç</option>
+              </select>
 
                 <label className="yazi">Kahvaltı Adeti</label>
-                <input type="text"
+               {/* <input type="text"
                 onChange={this.kahvaltiAdetOnChange}
                 className="form-control text"
+              />*/}
+              <input type="number"
+              onChange={this.yasinOnChange}
+              placeholder="Lütfen Adet Yoksa Geçiniz"
+              className="form-control text"
               />
 
-
                 <label className="yazi">Öğle Yemek Adeti</label>
-                <input type="text"
+                <input type="number"
                 onChange={this.oglenAdetOnChange}
+                placeholder="Lütfen Adet Yoksa Geçiniz"
                 className="form-control text"
               />
 
 
                 <label className="yazi">İkindi Yemek Adeti</label>
-                <input type="text"
+                <input type="number"
                   onChange={this.ikindiAdetOnChange}
+                  placeholder="Lütfen Adet Yoksa Geçiniz"
                   className="form-control text"
                 />
 
                 <label className="yazi">Akşam Yemek Adeti</label>
-                <input type="text"
+                <input type="number"
                 onChange={this.aksamAdetOnChange}
+                placeholder="Lütfen Adet Yoksa Geçiniz"
                 className="form-control text"
               />
                 
               <label className="yazi">Gece Yemek Adeti</label>
-              <input type="text"
+              <input type="number"
               onChange={this.geceAdetOnChange}
+              placeholder="Lütfen Adet Yoksa Geçiniz"
               className="form-control text"
             />
 
             <label className="yazi">Gece Ara Öğün Adeti</label>
-            <input type="text"
+            <input type="number"
             onChange={this.geceAraAdetOnChange}
+            placeholder="Lütfen Adet Yoksa Geçiniz"
             className="form-control text"
           />
-
-
               </div>
             </div>
             </Modal>

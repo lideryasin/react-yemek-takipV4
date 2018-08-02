@@ -1,0 +1,11 @@
+
+        <tr className="tr-detay">
+              <td><div className="gr"><Link to="/"><button onClick={this.geri} className="btn btn-outline-secondary"><i className="material-icons gr">
+                keyboard_backspaces
+              </i>Geri</button></Link></div> </td>
+              <td className="btn-detay"> <button onClick={this.openModal} type="button" className="btn btn-outline-info">Düzenle<i className="material-icons dzn">
+                edit
+            </i></button> <button type="button" onClick={() => this.delete(item.key)} className="btn btn-outline-danger">Sil<i className="material-icons md-48 red65">
+                  delete_forever
+            </i></button> </td>
+            </tr>

@@ -15,7 +15,7 @@ function searchingFor(term) {
     return string.toLowerCase();
   }
   return function (x) {
-    return x.lokasyon.turkishToLower().includes(term.turkishToLower()) || !term + x.tarih.turkishToLower().includes(term.turkishToLower()) || !term + x.adet.turkishToLower().includes(term.turkishToLower()) || !term;
+    return x.lokasyon.turkishToLower().includes(term.turkishToLower()) || !term + x.tarih.turkishToLower().includes(term.turkishToLower()) || !term + x.toplam.turkishToLower().includes(term.turkishToLower()) || !term;
   }
 }
 
@@ -63,17 +63,15 @@ class List extends Component {
         return cloned;
       })
       .value();
-    isTakip = isTakip.reverse().sort((a, b) => Intl.Collator("tr").compare(b.isTakip, a.isTakip));
+    //    isTakip = isTakip.reverse().sort((a, b) => Intl.Collator("tr").compare(b.isTakip, a.isTakip));
     this.setState({
       isTakip: isTakip.reverse()
     });
   }
 
-  detaySayfasi = (isTakipler) => {
-    // this.props.history.push(`/detay/${isTakipler.key}`, { isTakipler });
-
-
-  }
+  /* detaySayfasi = (isTakipler) => {
+     // this.props.history.push(`/detay/${isTakipler.key}`, { isTakipler })
+   }*/
 
   render() {
     const { term, isTakip } = this.state;
@@ -88,8 +86,6 @@ class List extends Component {
 
         {
           isTakip.filter(searchingFor(term)).map((isTakipler) =>
-            // <Link to={`/detay/${isTakipler.key}`} key={isTakipler.key}   >
-
             <Link to={{
               pathname: '/detay/' + isTakipler.key,
               state: { isTakipler }
