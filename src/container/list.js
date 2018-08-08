@@ -103,7 +103,10 @@ class List extends Component {
                           {isTakipler.tarih}
                         </div>
                         <div className="col-sm">
-                          {isTakipler.toplam}
+                          {isTakipler.kahvaltiToplam}
+                        </div>
+                        <div className="col-sm">
+                          {isTakipler.yemekToplam}
                         </div>
                       </div>
                     </div>
