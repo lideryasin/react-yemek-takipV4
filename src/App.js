@@ -27,12 +27,6 @@ class App extends Component {
     super();
 
     firebase.initializeApp({
-      apiKey: "AIzaSyARPen73u2W8KXS-H7uZXDvYziPwzZB2nk",
-      authDomain: "istakip-f8bc3.firebaseapp.com",
-      databaseURL: "https://istakip-f8bc3.firebaseio.com",
-      projectId: "istakip-f8bc3",
-      storageBucket: "istakip-f8bc3.appspot.com",
-      messagingSenderId: "494518007166"
     })
 
   }
